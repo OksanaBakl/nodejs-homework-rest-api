@@ -52,7 +52,7 @@ router.post("/", authenticate, async (req, res, next) => {
 	}
 });
 
-router.put("/:id", async (req, res, next) => {
+router.put("/:id",authenticate, async (req, res, next) => {
 	try {
 		const { id } = req.params;
 		const updateContact = await Contact.findByIdAndUpdate(id, req.body, {
@@ -70,7 +70,7 @@ router.put("/:id", async (req, res, next) => {
 	}
 });
 
-router.patch("/:id/active", async (req, res, next) => {
+router.patch("/:id/active",authenticate, async (req, res, next) => {
 	try {
 		const { id } = req.params;
 		const { active } = req.body;
@@ -91,7 +91,7 @@ router.patch("/:id/active", async (req, res, next) => {
 	}
 });
 
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id",authenticate, async (req, res, next) => {
 	try {
 		const { id } = req.params;
 		const deleteContact = await Contact.findByIdAndRemove(id);
